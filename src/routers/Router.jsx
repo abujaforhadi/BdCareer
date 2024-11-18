@@ -2,29 +2,41 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
-import Services from "../pages/Services";
+import CardDetails from "../Components/CardDetails";
+import Login from "../Components/Login";
+import Registration from "../Components/Registration";
+import PrivateRouter from "./PrivateRouter";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout></MainLayout>,
+    element: <MainLayout />,
     children: [
       {
         path: "/",
-        element: <Home></Home>,
-        loader: () => fetch(`./data.json`),
+        element: <Home />,
+        loader: () => fetch(`/data.json`),
       },
       {
-        path: "/services/:category",
-        element: <p>.</p>,
-        // loader: ({ params }) =>
-        //   fetch(
-        //     `https://openapi.programming-hero.com/api/news/category/${params.id}`
-        //   ),
+        path: "/services/:id",
+        element: (<PrivateRouter><CardDetails /></PrivateRouter>),
+        loader: async ({ params }) => {
+          const response = await fetch(`/data.json`);
+          const data = await response.json();
+          return data.find((item) => item.id === params.id);
+        },
       },
       {
         path: "/profile",
-        element: <Profile></Profile>,
+        element:(<PrivateRouter><Profile /></PrivateRouter>) ,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/registration",
+        element: <Registration />,
       },
     ],
   },

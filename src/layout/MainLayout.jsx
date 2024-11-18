@@ -7,7 +7,7 @@ import Footers from '../Components/Footers';
 const MainLayout = () => {
     return (
         <div className='font-poppins'>
-            <header className='h-20'>
+            <header className='h-10 md:h-20'>
                 <Navbar></Navbar>
             </header>
             <main>

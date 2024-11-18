@@ -9,7 +9,7 @@
     "time": "5-6pm",
     "counselor": "Dr. Alan Parker",
     "rating": 4.8,
-    "image_url": "https://example.com/career-counseling-sessions.jpg"
+    "image_url": "https://www.globalcareercounsellor.com/blog/wp-content/uploads/2020/01/what-is-career-counselling.png"
   },
   {
     "id": "2kdsbfi2j",
@@ -21,7 +21,7 @@
     "time": "3-4pm",
     "counselor": "Jessica Miller",
     "rating": 4.7,
-    "image_url": "https://example.com/resume-review.jpg"
+    "image_url": "https://www.4cornerresources.com/wp-content/uploads/2023/02/Reviewing-resumes-scaled.jpeg"
   },
   {
     "id": "3jdhs9fhs",
@@ -32,8 +32,8 @@
     "date": "07-12-24",
     "time": "2-3pm",
     "counselor": "Kevin Wright",
-    "rating": 4.9,
-    "image_url": "https://example.com/job-search-advising.jpg"
+    "rating": 3.9,
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ9kacMAxK3HgLPtD9uSmqURP03Uq3PLju2w&s"
   },
   {
     "id": "4fjd839sd",
@@ -45,7 +45,7 @@
     "time": "10-11am",
     "counselor": "Sophia Johnson",
     "rating": 4.8,
-    "image_url": "https://example.com/skill-development-it.jpg"
+    "image_url": "https://open.ecdl.com.bd/wp-content/uploads/2023/07/skill-development-banner-illustration.png"
   },
   {
     "id": "5fjndc8f9",
@@ -57,7 +57,7 @@
     "time": "3-4pm",
     "counselor": "Kevin Wright",
     "rating": 4.9,
-    "image_url": "https://example.com/mock-coding-interview.jpg"
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5vQLEA6wdmiZ2iUPYxp3Nhv9SuBVfHqJIdw&s"
   },
   {
     "id": "6sdflk9d0",
@@ -69,20 +69,9 @@
     "time": "8-9pm",
     "counselor": "Laura Green",
     "rating": 4.9,
-    "image_url": "https://example.com/cloud-certification-exam-prep.jpg"
+    "image_url": "https://platinumdatarecovery.com/wp-content/uploads/2023/05/cloud-computing-diagram.webp"
   },
-  {
-    "id": "7kfj9df8g",
-    "service_name": "Cybersecurity Essentials Workshop",
-    "category": "Offline",
-    "brief_description": "Learn the fundamental concepts of cybersecurity in this group workshop. Topics covered include risk management, encryption, firewalls, and best practices for securing IT infrastructure. The session also includes practical demonstrations on identifying security vulnerabilities and protecting sensitive data.",
-    "pricing": 2800,
-    "date": "12-12-24",
-    "time": "9-11am",
-    "counselor": "James Taylor",
-    "rating": 4.8,
-    "image_url": "https://example.com/cybersecurity-workshop.jpg"
-  },
+  
   {
     "id": "8dkd9s8hd",
     "service_name": "LinkedIn Profile Optimization",
@@ -93,7 +82,7 @@
     "time": "10-11am",
     "counselor": "Mark Rivera",
     "rating": 4.7,
-    "image_url": "https://example.com/linkedin-profile-optimization.jpg"
+    "image_url": "https://media.licdn.com/dms/image/D4D12AQGzyUVF5GGkhg/article-cover_image-shrink_720_1280/0/1682405145092?e=2147483647&v=beta&t=NhBgxvNvZSG4lqu9Ze3GrSahcIbSqB8yumu9q6zxo9g"
   },
   {
     "id": "9hs9d8fj8",
@@ -104,7 +93,7 @@
     "date": "13-12-24",
     "time": "10-12pm",
     "counselor": "Sophia Johnson",
-    "rating": 4.8,
+    "rating": 4.5,
     "image_url": "https://media.slidesgo.com/storage/57264163/conversions/0-cloud-computing-workshop-thumb.jpg"
   },
   {
@@ -116,7 +105,7 @@
     "date": "15-12-24",
     "time": "9am-5pm",
     "counselor": "Emma Adams",
-    "rating": 4.8,
+    "rating": 4,
     "image_url": "https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://images.ctfassets.net/wp1lcwdav1p1/1xW3Y1SC2Ro7fNbkKtQCjL/4fed6c11dd0a1896ef103e05232e453b/GettyImages-1213787273.jpg"
   }
 ]
