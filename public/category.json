@@ -1,0 +1,20 @@
+[
+    {
+      "id": 1000,
+      "name": "Online"
+    },
+    {
+      "id": 1001,
+      "name": "Offline"
+    },
+    {
+      "id": 1002,
+      "name": "Group"
+    },
+    {
+        "id": 1003,
+        "name": "Hybrid"
+      }
+      
+  ]
+  
