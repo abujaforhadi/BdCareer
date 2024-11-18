@@ -9,7 +9,12 @@ const Footer = () => {
       <div className="container mx-auto py-10 px-5 grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-gray-700">
         {/* About Section */}
         <div>
-          <h2 className="text-xl font-bold text-white mb-4">Bd Career</h2>
+          <Link
+            to="/"
+            className="text-2xl font-medium text-red-600 inline-flex"
+          >
+            Bd<span className="text-green-500">Career</span>
+          </Link>
           <p className="text-sm leading-6">
             Bd Career provides personalized career counseling services to guide
             individuals toward their ideal professions. With our expert advice,
@@ -95,7 +100,7 @@ const Footer = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Abu Jafor 
+            Abu Jafor
           </a>
           .
         </p>

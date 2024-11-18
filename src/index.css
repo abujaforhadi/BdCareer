@@ -5,12 +5,11 @@
 @tailwind utilities;
 
 a.active {
-  background-color: blue;
+  background-color: blue/30;
   color: white; /* optional: change text color to make it more readable */
 }
 
 /* Optional: Active state using Tailwind's utilities */
 a:hover, a:focus, a:active {
-  background-color: blue;
-  color: white; /* Ensure the text is visible on blue background */
+  text-decoration: underline;
 }
