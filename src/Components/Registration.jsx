@@ -1,13 +1,15 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 const Registration = () => {
   const navigate = useNavigate();
-  const { createNewUser, ProfileUpdate } = useContext(AuthContext);
+  const { createNewUser, ProfileUpdate, loginWithGoogle } =
+    useContext(AuthContext);
 
-  // State to manage form data and errors
   const [formData, setFormData] = useState({
     name: "",
     photo: "",
@@ -17,17 +19,19 @@ const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState("");
 
-  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const handleGoogleLogin = () => {
+    loginWithGoogle().then(() => {
+      navigate(location.state?.from?.pathname || "/");
+    });
+  };
 
-  // Handle form submission
   const handleSignUp = async (e) => {
     e.preventDefault();
     const { name, photo, email, password } = formData;
 
-    // Password validation
     if (!validatePassword(password)) {
       setPasswordError(
         "Password must be at least 6 characters, contain an uppercase letter, and a lowercase letter."
@@ -47,7 +51,6 @@ const Registration = () => {
     }
   };
 
-  // Validate password strength
   const validatePassword = (password) => {
     const upperCaseRegex = /[A-Z]/;
     const lowerCaseRegex = /[a-z]/;
@@ -79,40 +82,86 @@ const Registration = () => {
           Register your account
         </h2>
         <form onSubmit={handleSignUp}>
-          {["name", "photo", "email", "password"].map((field, index) => (
-            <div className="mb-4" key={index}>
-              <label
-                htmlFor={field}
-                className="block text-sm font-medium text-gray-700"
-              >
-                {field.charAt(0).toUpperCase() + field.slice(1)}
-              </label>
-              <input
-                type={field === "password" && showPassword ? "text" : field}
-                name={field}
-                placeholder={`Enter your ${field}`}
-                value={formData[field]}
-                onChange={handleChange}
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-              />
-              {field === "password" && (
-                <button
-                  type="button"
-                  onClick={togglePassword}
-                  className="absolute right-3 top-9 text-gray-500"
-                >
-                  {showPassword ? "Hide" : "Show"}
-                </button>
-              )}
-            </div>
-          ))}
+          <div className="mb-4">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              placeholder="Enter your name"
+              value={formData.name}
+              onChange={handleChange}
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
 
-          {/* Display password error if exists */}
+          <div className="mb-4">
+            <label
+              htmlFor="photo"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Photo URL
+            </label>
+            <input
+              type="text"
+              name="photo"
+              placeholder="Enter your photo URL"
+              value={formData.photo}
+              onChange={handleChange}
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+
+          <div className="mb-6 relative">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Password
+            </label>
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+            />
+            <button
+              type="button"
+              onClick={togglePassword}
+              className="absolute right-3 top-9 text-gray-500"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </button>
+          </div>
+
           {passwordError && (
             <p className="text-sm text-red-500 mb-4">{passwordError}</p>
           )}
 
-          {/* Terms and conditions checkbox */}
           <div className="mb-6 flex items-center">
             <input
               type="checkbox"
@@ -131,7 +180,6 @@ const Registration = () => {
             </label>
           </div>
 
-          {/* Submit button */}
           <button
             type="submit"
             className="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -139,6 +187,28 @@ const Registration = () => {
             Register
           </button>
         </form>
+        <div className="mt-4 flex justify-center items-center space-x-4">
+          <span className="text-gray-600">SignUp with</span>
+          <button
+            type="button"
+            onClick={handleGoogleLogin}
+            className="btn rounded-lg flex items-center space-x-2 px-4 py-2 border border-gray-300 shadow-sm hover:bg-gray-100"
+            aria-label="Sign in with Google"
+          >
+            <FcGoogle className="w-6 h-6" />
+            <span className="text-gray-700 font-medium">Google</span>
+          </button>
+        </div>
+
+        <p className="mt-4 text-sm text-center text-gray-500">
+          Have An Account?{" "}
+          <Link
+            to="/login"
+            className="text-green-500 font-medium hover:underline"
+          >
+            login
+          </Link>
+        </p>
       </div>
     </div>
   );

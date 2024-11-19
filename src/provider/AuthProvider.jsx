@@ -65,9 +65,10 @@ const AuthProvider = ({ children }) => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       setUser(userCredential.user);
       toast.success("Login successful!");
+      navigate(location.state?.from?.pathname || "/");
     } catch (error) {
-      console.error("Error during login:", error.message);
-      toast.error(`Error: ${error.message}`);
+     
+      toast.error(`Please input valid email or password`);
     } finally {
       setLoading(false);
     }
