@@ -10,20 +10,13 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleResetPassword = (e) => {
-    e.preventDefault();
-    const email = document.querySelector('input[name="email"]').value;
+    const form = new FormData(e.target);
+    const email = form.get("email");
     if (!email) {
-      alert("Please enter your email address to reset your password.");
       return;
     }
     resetPassword(email)
-      .then(() => {
-        alert("Password reset link sent to your email.");
-      })
-      .catch((err) => {
-        console.error(err);
-        alert("Error resetting password.");
-      });
+     
   };
 
   const handleSignIn = (e) => {
@@ -37,8 +30,7 @@ const Login = () => {
         navigate(location.state?.from?.pathname || "/");
       })
       .catch((err) => {
-        console.error(err);
-        alert("Login failed. Please check your credentials.");
+        
       });
   };
 
@@ -47,10 +39,7 @@ const Login = () => {
       .then(() => {
         navigate(location.state?.from?.pathname || "/");
       })
-      .catch((err) => {
-        console.error(err);
-        alert("Google login failed.");
-      });
+      
   };
 
   const togglePassword = () => {

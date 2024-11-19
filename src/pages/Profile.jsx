@@ -1,24 +1,26 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../provider/AuthProvider';
-import { updateProfile } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
-    const { user } = useContext(AuthContext);
+    const { user, ProfileUpdate } = useContext(AuthContext);
     const [displayName, setDisplayName] = useState(user?.displayName || '');
     const [photoURL, setPhotoURL] = useState(user?.photoURL || '');
 
     const handleUpdateProfile = async () => {
         if (!user) return;
 
+        if (displayName === user.displayName && photoURL === user.photoURL) {
+            toast.info('No changes to save.');
+            return;
+        }
+
         try {
-            await updateProfile(user, {
-                displayName: displayName.trim(),
-                photoURL: photoURL.trim(),
-            });
-            alert('Profile updated successfully!');
+            await ProfileUpdate(displayName, photoURL);
+            toast.success("Profile updated successfully!");
+            
         } catch (error) {
-            console.error('Error updating profile:', error);
-            alert('Failed to update profile.');
+            toast.error(`Error: ${error.message}`);
         }
     };
 
@@ -27,12 +29,13 @@ const Profile = () => {
             setDisplayName(user.displayName || '');
             setPhotoURL(user.photoURL || '');
         }
-    }, [user]);
+    }, [user]); 
 
     return (
         <div className="flex justify-center py-10 px-5">
             <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
                 <h2 className="text-2xl font-semibold mb-4">My Profile</h2>
+                
                 {user?.photoURL && (
                     <div className="flex justify-center mb-4">
                         <img
@@ -42,6 +45,7 @@ const Profile = () => {
                         />
                     </div>
                 )}
+
                 <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700">Email</label>
                     <input
@@ -51,6 +55,7 @@ const Profile = () => {
                         className="input input-bordered w-full"
                     />
                 </div>
+
                 <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700">Name</label>
                     <input
@@ -61,6 +66,8 @@ const Profile = () => {
                         className="input input-bordered w-full"
                     />
                 </div>
+
+                {/* Update the photo URL */}
                 <div className="mb-4">
                     <label className="block text-sm font-medium text-gray-700">Photo URL</label>
                     <input
@@ -71,6 +78,8 @@ const Profile = () => {
                         className="input input-bordered w-full"
                     />
                 </div>
+
+                {/* Save changes button */}
                 <button
                     onClick={handleUpdateProfile}
                     className="btn btn-primary w-full mt-4"

@@ -11,6 +11,8 @@ import {
   GoogleAuthProvider, // Import this
 } from "firebase/auth";
 import app from "../firebase/firebase.init";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const auth = getAuth(app);
 export const AuthContext = createContext();
@@ -24,21 +26,23 @@ const AuthProvider = ({ children }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       setUser(userCredential.user);
+      toast.success("Account created successfully!");
     } catch (error) {
       console.error("Error during registration:", error.message);
-      throw error;
+      toast.error(`Error: ${error.message}`);
     } finally {
       setLoading(false);
     }
   };
 
-  const UpdateProfile = async (displayName, photoURL) => {
+  const ProfileUpdate = async (displayName, photoURL) => {
     setLoading(true);
     try {
       await updateProfile(auth.currentUser, { displayName, photoURL });
-      alert("Profile updated successfully!");
+      
     } catch (error) {
       console.error("Error updating profile:", error.message);
+      toast.error(`Error: ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -47,10 +51,10 @@ const AuthProvider = ({ children }) => {
   const resetPassword = async (email) => {
     try {
       await sendPasswordResetEmail(auth, email);
-      alert("Password reset email sent!");
+      toast.success("Password reset email sent!");
     } catch (error) {
       console.error("Error resetting password:", error.message);
-      alert(`Failed to send password reset email: ${error.message}`);
+      toast.error(`Failed to send password reset email: ${error.message}`);
     }
   };
 
@@ -59,25 +63,26 @@ const AuthProvider = ({ children }) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       setUser(userCredential.user);
-      console.log(userCredential);
+      toast.success("Login successful!");
     } catch (error) {
       console.error("Error during login:", error.message);
-      throw error;
+      toast.error(`Error: ${error.message}`);
     } finally {
       setLoading(false);
     }
   };
 
-  // Google Login Function
+  
   const loginWithGoogle = async () => {
-    const provider = new GoogleAuthProvider();  // Create Google provider instance
+    const provider = new GoogleAuthProvider(); // Create Google provider instance
     try {
       const result = await signInWithPopup(auth, provider); // Sign in with popup
       const user = result.user; // The signed-in user
       setUser(user);
-      console.log("Google login successful:", user);
+      toast.success("Google login successful!");
     } catch (error) {
       console.error("Error during Google login:", error.message);
+      toast.error(`Error: ${error.message}`);
     }
   };
 
@@ -86,9 +91,10 @@ const AuthProvider = ({ children }) => {
     try {
       await signOut(auth);
       setUser(null);
-      alert("Sign-out successful.");
+      toast.success("Sign-out successful.");
     } catch (error) {
       console.error("Error during sign-out:", error.message);
+      toast.error(`Error: ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -110,12 +116,26 @@ const AuthProvider = ({ children }) => {
     logout,
     loading,
     resetPassword,
-    UpdateProfile,
-    loginWithGoogle, // Add the google login function to context
+    ProfileUpdate,
+    loginWithGoogle, 
   };
 
   return (
-    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={authInfo}>
+      {children}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light" // Change to 'dark' for a dark theme
+      />
+    </AuthContext.Provider>
   );
 };
 

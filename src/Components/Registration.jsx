@@ -1,8 +1,12 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
-  const { createNewUser, UpdateProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { createNewUser, ProfileUpdate } = useContext(AuthContext);
+  
+  // State to manage form data and errors
   const [formData, setFormData] = useState({
     name: "",
     photo: "",
@@ -12,32 +16,40 @@ const Registration = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [passwordError, setPasswordError] = useState("");
 
+  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Handle form submission
   const handleSignUp = async (e) => {
     e.preventDefault();
     const { name, photo, email, password } = formData;
-
+  
+    // Password validation
     if (!validatePassword(password)) {
       setPasswordError(
         "Password must be at least 6 characters, contain an uppercase letter, and a lowercase letter."
       );
       return;
     }
-
+  
     setPasswordError("");
+  
     try {
+     
       await createNewUser(email, password);
-      await UpdateProfile(name, photo);
-      alert("Registration successful!");
+      await ProfileUpdate(name, photo);
+  
+      
+      navigate("/", { replace: true }); 
     } catch (error) {
       console.error("Error during registration:", error.message);
-      alert(`Registration failed: ${error.message}`);
     }
   };
+  
 
+  // Validate password strength
   const validatePassword = (password) => {
     const upperCaseRegex = /[A-Z]/;
     const lowerCaseRegex = /[a-z]/;
@@ -50,6 +62,7 @@ const Registration = () => {
     );
   };
 
+  // Toggle password visibility
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
@@ -61,6 +74,7 @@ const Registration = () => {
           Register your account
         </h2>
         <form onSubmit={handleSignUp}>
+          {/* Form fields: name, photo, email, password */}
           {["name", "photo", "email", "password"].map((field, index) => (
             <div className="mb-4" key={index}>
               <label
@@ -89,10 +103,12 @@ const Registration = () => {
             </div>
           ))}
 
+          {/* Display password error if exists */}
           {passwordError && (
             <p className="text-sm text-red-500 mb-4">{passwordError}</p>
           )}
 
+          {/* Terms and conditions checkbox */}
           <div className="mb-6 flex items-center">
             <input
               type="checkbox"
@@ -111,6 +127,7 @@ const Registration = () => {
             </label>
           </div>
 
+          {/* Submit button */}
           <button
             type="submit"
             className="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
