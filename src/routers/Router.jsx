@@ -6,11 +6,14 @@ import CardDetails from "../Components/CardDetails";
 import Login from "../Components/Login";
 import Registration from "../Components/Registration";
 import PrivateRouter from "./PrivateRouter";
+import Error from "../Components/Error";
+import Contact from "../Components/Contact";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement:<Error></Error>,
     children: [
       {
         path: "/",
@@ -37,6 +40,10 @@ export const router = createBrowserRouter([
       {
         path: "/registration",
         element: <Registration />,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
       },
     ],
   },
