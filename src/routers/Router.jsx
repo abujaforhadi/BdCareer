@@ -8,6 +8,7 @@ import Registration from "../Components/Registration";
 import PrivateRouter from "./PrivateRouter";
 import Error from "../Components/Error";
 import Contact from "../Components/Contact";
+import Services from "../pages/Services";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,11 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: () => fetch(`/data.json`),
+      },
+      {
+        path: "/services",
+        element: <Services />,
         loader: () => fetch(`/data.json`),
       },
       {

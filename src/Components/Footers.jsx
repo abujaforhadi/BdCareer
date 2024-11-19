@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-gray-900 text-gray-300 md:pt-10">
       {/* Top Section */}
       <div className="container mx-auto py-10 px-5 grid grid-cols-1 md:grid-cols-3 gap-8 border-b border-gray-700">
         {/* About Section */}
