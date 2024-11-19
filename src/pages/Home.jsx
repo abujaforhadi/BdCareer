@@ -4,6 +4,7 @@ import Carousel from "../Components/Carousel";
 import { useLoaderData } from "react-router-dom";
 import Card from "../Components/Card";
 import { Helmet } from "react-helmet-async";
+import Client from "../Components/Client";
 
 
 const Home = () => {
@@ -28,6 +29,12 @@ const Home = () => {
             <Card key={data.id} data={data}></Card>
           ))}
         </div>
+      </div>
+      <div>
+      <h1 className="text-center text-3xl font-semibold pt-5">Satisfied Customers</h1>
+
+        <h1></h1>
+        <Client></Client>
       </div>
     </div>
   );
