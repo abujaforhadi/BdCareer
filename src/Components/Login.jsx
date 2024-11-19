@@ -17,18 +17,15 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-
   const handleResetPassword = () => {
     const email = document.querySelector('input[name="email"]').value;
     if (!email) {
       toast.error("Please enter your email address");
       return;
     }
-    resetPassword(email)
-      
+    resetPassword(email);
   };
 
- 
   const handleSignIn = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -40,7 +37,7 @@ const Login = () => {
     login(email, password)
       .then(() => {
         setIsLoading(false);
-       
+        navigate(location.state?.from?.pathname || "/"); 
       })
       .catch(() => {
         setIsLoading(false);
@@ -70,7 +67,10 @@ const Login = () => {
           content="Login to access your BD Career account and explore opportunities."
         />
         <meta property="og:title" content="Login | BD Career" />
-        <meta property="og:description" content="Login to access your BD Career account." />
+        <meta
+          property="og:description"
+          content="Login to access your BD Career account."
+        />
         <meta property="og:type" content="website" />
       </Helmet>
 

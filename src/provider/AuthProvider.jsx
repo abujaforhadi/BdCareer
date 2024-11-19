@@ -8,7 +8,7 @@ import {
   updateProfile,
   sendPasswordResetEmail,
   signInWithPopup,
-  GoogleAuthProvider, // Import this
+  GoogleAuthProvider, 
 } from "firebase/auth";
 import app from "../firebase/firebase.init";
 import { ToastContainer, toast } from "react-toastify";
@@ -29,7 +29,7 @@ const AuthProvider = ({ children }) => {
       setUser(userCredential.user);
       toast.success("Account created successfully!");
     } catch (error) {
-      console.error("Error during registration:", error.message);
+      // console.error("Error during registration:", error.message);
       toast.error(`Error: ${error.message}`);
     } finally {
       setLoading(false);
@@ -64,22 +64,21 @@ const AuthProvider = ({ children }) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       setUser(userCredential.user);
-      toast.success("Login successful!");
-      navigate(location.state?.from?.pathname || "/");
     } catch (error) {
-     
-      toast.error(`Please input valid email or password`);
+      // console.error("Login error:", error.message);
+      toast.error("Please input valid email or password"); 
     } finally {
       setLoading(false);
     }
   };
+  
 
   
   const loginWithGoogle = async () => {
-    const provider = new GoogleAuthProvider(); // Create Google provider instance
+    const provider = new GoogleAuthProvider(); 
     try {
-      const result = await signInWithPopup(auth, provider); // Sign in with popup
-      const user = result.user; // The signed-in user
+      const result = await signInWithPopup(auth, provider); 
+      const user = result.user; 
       setUser(user);
       toast.success("Google login successful!");
     } catch (error) {

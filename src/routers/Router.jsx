@@ -19,11 +19,16 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch(`/data.json`),
+        loader: async () => {
+          const response = await fetch(`/data.json`);
+          const data = await response.json();
+          return data.slice(0, 3); 
+        },
       },
+      
       {
         path: "/services",
-        element: <Services />,
+        element: <PrivateRouter><Services /></PrivateRouter> ,
         loader: () => fetch(`/data.json`),
       },
       {

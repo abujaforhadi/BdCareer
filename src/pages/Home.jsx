@@ -1,7 +1,7 @@
 import React from "react";
 import Stats from "../Components/Stats";
 import Carousel from "../Components/Carousel";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Card from "../Components/Card";
 import { Helmet } from "react-helmet-async";
 import Client from "../Components/Client";
@@ -34,13 +34,21 @@ const Home = () => {
             <Card key={data.id} data={data}></Card>
           ))}
         </div>
+        {/* Center the "See All" button */}
+        <div className="text-center">
+          <Link
+            to="/services"
+            className=" btn text-xl  bg-blue-500 text-white px-5 py-2"
+          >
+            See All
+          </Link>
+        </div>
       </div>
       <News></News>
       <div>
         <h1 className="text-center text-3xl font-semibold pt-5 ">
           Satisfied Customers
         </h1>
-
         <Client></Client>
       </div>
     </div>

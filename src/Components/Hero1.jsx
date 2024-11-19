@@ -18,7 +18,7 @@ const Hero1 = () => {
             in your professional journey.
           </p>
           <Link
-            to="/career"
+            to="/services"
             className="btn btn-outline bg-[#007BFF] text-white"
           >
             Explore Our Services <FaCircleArrowRight />

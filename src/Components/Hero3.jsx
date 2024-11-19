@@ -16,7 +16,7 @@ const Hero3 = () => {
             navigate the path to success with confidence.
           </p>
           <Link
-            to="/career"
+            to="/services"
             className="btn btn-lg bg-[#007BFF] hover:bg-blue-700 text-white flex items-center gap-2 px-6 py-3 rounded-full shadow-lg transition-transform transform hover:scale-105"
           >
             Explore Our Services <FaCircleArrowRight size={20} />

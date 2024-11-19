@@ -16,7 +16,7 @@ const Hero = () => {
             your career path and unlock your true potential
           </p>
           <Link
-            to="/career"
+            to="/services"
             className="btn btn-outline bg-[#007BFF] text-white"
           >
             Explore Our Services <FaCircleArrowRight />
