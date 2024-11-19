@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa"; // React Icons
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from "react-icons/fa"; 
 import AOS from "aos";
-import "aos/dist/aos.css"; // Import AOS styles
+import "aos/dist/aos.css"; 
+import { Helmet } from "react-helmet-async"; 
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,6 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add form submission logic here (e.g., send an email or save to database)
     setIsSubmitted(true);
     setFormData({
       name: "",
@@ -35,9 +35,15 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-6 lg:px-24">
+     
+      <Helmet>
+        <title>Contact Us | BD Career</title>
+        <meta name="description" content="Get in touch with BD Career. Contact us for inquiries or support." />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
+
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Contact Form */}
           <div
             className="bg-white p-10 rounded-lg shadow-lg"
             data-aos="fade-up"

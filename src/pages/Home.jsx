@@ -3,6 +3,7 @@ import Stats from "../Components/Stats";
 import Carousel from "../Components/Carousel";
 import { useLoaderData } from "react-router-dom";
 import Card from "../Components/Card";
+import { Helmet } from "react-helmet-async";
 
 
 const Home = () => {
@@ -10,7 +11,13 @@ const Home = () => {
 
   const data = useLoaderData();
   return (
+    
     <div>
+      <Helmet>
+        <title>Home | BD Career</title>
+        <meta name="description" content="Get in touch with BD Career. Contact us for inquiries or support." />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <Carousel></Carousel>
       <Stats></Stats>
       <div>

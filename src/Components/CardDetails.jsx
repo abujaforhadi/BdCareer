@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import { Helmet } from "react-helmet-async";
 
 const CardDetails = () => {
   const data = useLoaderData();
@@ -32,6 +33,14 @@ const CardDetails = () => {
 
   return (
     <div className="flex justify-center py-12 px-5">
+      <Helmet>
+        <title>Services details | BD Career</title>
+        <meta
+          name="description"
+          content="Get in touch with BD Career. Contact us for inquiries or support."
+        />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <div className="card w-full lg:w-3/4 xl:w-1/2 bg-white  rounded-lg overflow-hidden">
         <figure className="overflow-hidden">
           <img

@@ -1,11 +1,12 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Registration = () => {
   const navigate = useNavigate();
   const { createNewUser, ProfileUpdate } = useContext(AuthContext);
-  
+
   // State to manage form data and errors
   const [formData, setFormData] = useState({
     name: "",
@@ -25,7 +26,7 @@ const Registration = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     const { name, photo, email, password } = formData;
-  
+
     // Password validation
     if (!validatePassword(password)) {
       setPasswordError(
@@ -33,21 +34,18 @@ const Registration = () => {
       );
       return;
     }
-  
+
     setPasswordError("");
-  
+
     try {
-     
       await createNewUser(email, password);
       await ProfileUpdate(name, photo);
-  
-      
-      navigate("/", { replace: true }); 
+
+      navigate("/", { replace: true });
     } catch (error) {
       console.error("Error during registration:", error.message);
     }
   };
-  
 
   // Validate password strength
   const validatePassword = (password) => {
@@ -62,19 +60,25 @@ const Registration = () => {
     );
   };
 
-  // Toggle password visibility
   const togglePassword = () => {
     setShowPassword(!showPassword);
   };
 
   return (
     <div className="flex items-center justify-center bg-gray-50 pt-10">
+      <Helmet>
+        <title>Registration | BD Career</title>
+        <meta
+          name="description"
+          content="Get in touch with BD Career. Contact us for inquiries or support."
+        />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
           Register your account
         </h2>
         <form onSubmit={handleSignUp}>
-          {/* Form fields: name, photo, email, password */}
           {["name", "photo", "email", "password"].map((field, index) => (
             <div className="mb-4" key={index}>
               <label

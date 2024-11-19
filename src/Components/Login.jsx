@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
-import { FaEye, FaEyeSlash } from "react-icons/fa"; 
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const { login, resetPassword, loginWithGoogle } = useContext(AuthContext);
@@ -15,8 +16,7 @@ const Login = () => {
     if (!email) {
       return;
     }
-    resetPassword(email)
-     
+    resetPassword(email);
   };
 
   const handleSignIn = (e) => {
@@ -29,25 +29,29 @@ const Login = () => {
       .then(() => {
         navigate(location.state?.from?.pathname || "/");
       })
-      .catch((err) => {
-        
-      });
+      .catch((err) => {});
   };
 
   const handleGoogleLogin = () => {
-    loginWithGoogle()
-      .then(() => {
-        navigate(location.state?.from?.pathname || "/");
-      })
-      
+    loginWithGoogle().then(() => {
+      navigate(location.state?.from?.pathname || "/");
+    });
   };
 
   const togglePassword = () => {
-    setShowPassword(!showPassword); 
+    setShowPassword(!showPassword);
   };
 
   return (
     <div className="flex items-center justify-center py-10 bg-gray-50">
+      <Helmet>
+        <title>Login | BD Career</title>
+        <meta
+          name="description"
+          content="Get in touch with BD Career. Contact us for inquiries or support."
+        />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm">
         <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
           Login to your account
@@ -77,13 +81,13 @@ const Login = () => {
               Password
             </label>
             <input
-              type={showPassword ? "text" : "password"} 
+              type={showPassword ? "text" : "password"}
               name="password"
               required
               placeholder="Enter your password"
               className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
             />
-            
+
             <button
               type="button"
               onClick={togglePassword}
