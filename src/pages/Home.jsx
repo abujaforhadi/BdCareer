@@ -10,7 +10,7 @@ import News from "../Components/News";
 const Home = () => {
   const data = useLoaderData();
   return (
-    <div className="grid grid-cols-1 justify-center">
+    <div className="grid grid-cols-1 justify-center items-center">
       <Helmet>
         <title>Home | BD Career</title>
         <meta

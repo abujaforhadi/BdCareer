@@ -18,7 +18,7 @@ A robust career counseling website designed to provide personalized career guida
 - **User Authentication:** Firebase integration for email/password and Google login, complete with password reset functionality.
 - **Private Routes:** Securely implemented private routes for "Services," "My Profile," and "Job Apply" pages to restrict access to authenticated users only.
 - **Responsive Design:** Fully optimized for mobile, tablet, and desktop views.
-- **Dynamic Content Management:** JSON-powered dynamic services and details with hosted images using imgbb.
+- **Dynamic Content Management:** JSON-powered dynamic services and details .
 - **Interactive Feedback:** Users can leave comments and feedback on service pages.
 - **User Profile Editing:** Users can update their name and photo securely with Firebase's updateProfile() method.
 - **Error Handling:** Custom 404 page for invalid routes and toast notifications for error/success messages.
