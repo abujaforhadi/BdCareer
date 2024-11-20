@@ -34,7 +34,7 @@ const Home = () => {
             <Card key={data.id} data={data}></Card>
           ))}
         </div>
-        {/* Center the "See All" button */}
+       
         <div className="text-center">
           <Link
             to="/services"
