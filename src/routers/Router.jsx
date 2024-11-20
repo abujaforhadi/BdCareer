@@ -9,6 +9,7 @@ import PrivateRouter from "./PrivateRouter";
 import Error from "../Components/Error";
 import Contact from "../Components/Contact";
 import Services from "../pages/Services";
+import Jobs from "../pages/Jobs";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,11 @@ export const router = createBrowserRouter([
       {
         path: "/profile",
         element:(<PrivateRouter><Profile /></PrivateRouter>) ,
+      },
+      {
+        path: "/jobs",
+        element:(<PrivateRouter><Jobs /></PrivateRouter>) ,
+        loader: ()=>fetch("/jobapply.json")
       },
       {
         path: "/login",

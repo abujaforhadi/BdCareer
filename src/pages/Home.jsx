@@ -10,7 +10,7 @@ import News from "../Components/News";
 const Home = () => {
   const data = useLoaderData();
   return (
-    <div className="mx-4 md:mx-0">
+    <div className="grid grid-cols-1 justify-center">
       <Helmet>
         <title>Home | BD Career</title>
         <meta
@@ -29,7 +29,7 @@ const Home = () => {
           Empower Your Career Journey for <br /> Greater{" "}
           <span className="text-green-500">Success</span>{" "}
         </h2>
-        <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5">
+        <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-5 px-3">
           {data.map((data) => (
             <Card key={data.id} data={data}></Card>
           ))}

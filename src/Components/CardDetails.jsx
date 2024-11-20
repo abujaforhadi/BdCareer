@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import { Helmet } from "react-helmet-async";
+import { IoCloudDoneOutline } from "react-icons/io5";
 
 const CardDetails = () => {
   const data = useLoaderData();
@@ -17,9 +18,11 @@ const CardDetails = () => {
     image_url,
   } = data;
 
+  const navigate = useNavigate(); // Initialize navigate
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState("");
   const [currentRating, setCurrentRating] = useState(rating);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal visibility state
 
   const handleAddComment = () => {
     if (commentInput.trim() === "") return;
@@ -29,6 +32,15 @@ const CardDetails = () => {
 
   const handleRatingChange = (newRating) => {
     setCurrentRating(newRating);
+  };
+
+  const handleBookNow = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleNavigateHome = () => {
+    setIsModalOpen(false);
+    navigate("/"); // Redirect to the homepage
   };
 
   return (
@@ -41,7 +53,7 @@ const CardDetails = () => {
         />
         <meta name="robots" content="index, follow" />
       </Helmet>
-      <div className="card w-full lg:w-3/4 xl:w-1/2 bg-white  rounded-lg overflow-hidden">
+      <div className="card w-full lg:w-3/4 xl:w-1/2 bg-white rounded-lg overflow-hidden">
         <figure className="overflow-hidden">
           <img
             src={image_url}
@@ -96,7 +108,10 @@ const CardDetails = () => {
             </div>
           </div>
           <div className="mt-8">
-            <button className=" btn btn-primary btn-lg rounded-lg hover:bg-blue-600 transition-all duration-200">
+            <button
+              onClick={handleBookNow}
+              className="btn btn-primary btn-lg rounded-lg hover:bg-blue-600 transition-all duration-200"
+            >
               Book Now
             </button>
           </div>
@@ -138,6 +153,29 @@ const CardDetails = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="modal modal-open">
+          <div className="modal-box">
+            <p className="flex justify-center items-center mx-auto h-20 w-20 bg-green-500 rounded-full">
+              <IoCloudDoneOutline className="w-10 h-10 text-white" />
+            </p>
+
+            <h3 className="text-lg font-bold text-center">
+              Booking Confirmed!
+            </h3>
+            <p className="py-4 text-center">
+              You have successfully booked the service.
+            </p>
+            <div className="modal-action justify-center">
+              <button onClick={handleNavigateHome} className="btn bg-blue-400 text-white">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

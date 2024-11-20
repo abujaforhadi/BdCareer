@@ -8,10 +8,8 @@ const Navbar = () => {
   const [showTooltip, setShowTooltip] = useState(false);
 
   return (
-    <div className="navbar bg-blue-100 fixed top-0 left-0 right-0 z-50 shadow">
-      {/* Navbar Start */}
+    <div className="navbar  bg-blue-100 fixed top-0 left-0 right-0 z-50 shadow">
       <div className="navbar-start">
-        {/* Mobile Dropdown */}
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
             <AiOutlineMenuFold />
@@ -20,29 +18,35 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <NavLink to="/">Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/profile">My Profile</NavLink>
-            </li>
-            {user && (
+            <>
               <li>
-                <NavLink to="/services">Services</NavLink>
+                <NavLink to="/">Home</NavLink>
               </li>
-            )}
-            <li>
-              <NavLink to="/contact">Contact</NavLink>
-            </li>
+              <li>
+                <NavLink to="/profile">My Profile</NavLink>
+              </li>
+              {user && (
+                <>
+                  <li>
+                    <NavLink to="/services">Services</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/jobs">Jobs Apply</NavLink>
+                  </li>
+                </>
+              )}
+              <li>
+                <NavLink to="/contact">Contact</NavLink>
+              </li>
+            </>
           </ul>
         </div>
-        {/* Logo */}
-        <Link to="/" className="text-2xl font-medium text-red-600 inline-flex">
+
+        <Link to="/" className="text-xl md:text-2xl font-medium text-red-600 inline-flex">
           Bd<span className="text-green-500">Career</span>
         </Link>
       </div>
 
-      {/* Navbar Center */}
       <div className="navbar-center hidden md:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
@@ -52,9 +56,14 @@ const Navbar = () => {
             <NavLink to="/profile">My Profile</NavLink>
           </li>
           {user && (
-            <li>
-              <NavLink to="/services">Services</NavLink>
-            </li>
+            <>
+              <li>
+                <NavLink to="/services">Services</NavLink>
+              </li>
+              <li>
+                <NavLink to="/jobs">Jobs Apply</NavLink>
+              </li>
+            </>
           )}
           <li>
             <NavLink to="/contact">Contact</NavLink>
@@ -62,14 +71,15 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* Navbar End */}
       <div className="navbar-end">
         {user && user.email ? (
           <div className="flex items-center gap-4">
-            {/* User Avatar */}
             <div className="relative">
               <img
-                src={user.photoURL || "https://via.placeholder.com/40"}
+                src={
+                  user.photoURL ||
+                  "https://t4.ftcdn.net/jpg/02/29/75/83/360_F_229758328_7x8jwCwjtBMmC6rgFzLFhZoEpLobB6L8.jpg"
+                }
                 alt={user.displayName || "User"}
                 className="w-10 h-10 rounded-full cursor-pointer border-2 border-gray-300"
                 onMouseEnter={() => setShowTooltip(true)}
@@ -81,7 +91,7 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-            {/* Logout Button */}
+
             <button
               onClick={logout}
               className="btn bg-[#403F3F] text-white hover:bg-[#2c2b2b] transition"
@@ -90,7 +100,10 @@ const Navbar = () => {
             </button>
           </div>
         ) : (
-          <Link to="/login" className="btn bg-[#403F3F] text-white hover:bg-[#2c2b2b] transition">
+          <Link
+            to="/login"
+            className="btn bg-[#403F3F] text-white hover:bg-[#2c2b2b] transition"
+          >
             Login
           </Link>
         )}

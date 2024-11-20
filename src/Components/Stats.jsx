@@ -25,7 +25,7 @@ const Stats = () => {
 
         {/* Card 3 */}
         <div className="stat w-52 shadow-lg bg-white rounded-lg p-4 text-center">
-          <div className="stat-figure text-blue-600 mb-2">
+          <div className="stat-figure text-blue-600 mb-2 ml-8">
             <FaSchool className="text-4xl" />
           </div>
           <div className="stat-value text-2xl font-semibold text-gray-800">250+</div>
@@ -34,7 +34,7 @@ const Stats = () => {
 
         {/* Card 4 */}
         <div className="stat w-52 shadow-lg bg-white rounded-lg p-4 text-center">
-          <div className="stat-figure text-blue-600 mb-2">
+          <div className="stat-figure text-blue-600 mb-2 ml-2">
             <FaUniversity className="text-4xl" />
           </div>
           <div className="stat-value text-2xl font-semibold text-gray-800">50+</div>
