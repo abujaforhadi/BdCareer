@@ -22,6 +22,7 @@ const Registration = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   const handleGoogleLogin = () => {
     loginWithGoogle().then(() => {
       navigate(location.state?.from?.pathname || "/");
@@ -68,147 +69,141 @@ const Registration = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-50 pt-10">
+    <div className=" bg-gray-50 flex items-center justify-center py-10">
       <Helmet>
         <title>Registration | BD Career</title>
         <meta
           name="description"
-          content="Get in touch with BD Career. Contact us for inquiries or support."
+          content="Register for BD Career to access personalized career guidance."
         />
-        <meta name="robots" content="index, follow" />
       </Helmet>
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
-          Register your account
-        </h2>
-        <form onSubmit={handleSignUp}>
-          <div className="mb-4">
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter your name"
-              value={formData.name}
-              onChange={handleChange}
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
+      <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden w-full max-w-5xl">
+       
+        <div className="w-full md:w-1/2 p-8">
+          <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
+            Register Your Account
+          </h2>
+          <form onSubmit={handleSignUp}>
+            <div className="mb-4">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                value={formData.name}
+                onChange={handleChange}
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            </div>
 
-          <div className="mb-4">
-            <label
-              htmlFor="photo"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Photo URL
-            </label>
-            <input
-              type="text"
-              name="photo"
-              placeholder="Enter your photo URL"
-              value={formData.photo}
-              onChange={handleChange}
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
+            <div className="mb-4">
+              <label
+                htmlFor="photo"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Photo URL
+              </label>
+              <input
+                type="text"
+                name="photo"
+                placeholder="Enter your photo URL"
+                value={formData.photo}
+                onChange={handleChange}
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            </div>
 
-          <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-            />
-          </div>
+            <div className="mb-4">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={handleChange}
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            </div>
 
-          <div className="mb-6 relative">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+            <div className="mb-6 relative">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Password
+              </label>
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+              />
+              <button
+                type="button"
+                onClick={togglePassword}
+                className="absolute right-3 top-9 text-gray-500"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+
+            {passwordError && (
+              <p className="text-sm text-red-500 mb-4">{passwordError}</p>
+            )}
+
+            <button
+              type="submit"
+              className="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              Password
-            </label>
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="Enter your password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-            />
+              Register
+            </button>
+          </form>
+
+          <div className="mt-4 flex justify-center items-center space-x-4">
+            <span className="text-gray-600">SignUp with</span>
             <button
               type="button"
-              onClick={togglePassword}
-              className="absolute right-3 top-9 text-gray-500"
+              onClick={handleGoogleLogin}
+              className="btn rounded-lg flex items-center space-x-2 px-4 py-2 border border-gray-300 shadow-sm hover:bg-gray-100"
+              aria-label="Sign in with Google"
             >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
+              <FcGoogle className="w-6 h-6" />
+              <span className="text-gray-700 font-medium">Google</span>
             </button>
           </div>
 
-          {passwordError && (
-            <p className="text-sm text-red-500 mb-4">{passwordError}</p>
-          )}
-
-          <div className="mb-6 flex items-center">
-            <input
-              type="checkbox"
-              required
-              name="terms"
-              className="w-4 h-4 text-indigo-500 border-gray-300 rounded focus:ring-indigo-500"
-            />
-            <label
-              htmlFor="terms"
-              className="ml-2 text-sm text-gray-600 cursor-pointer"
+          <p className="mt-4 text-sm text-center text-gray-500">
+            Already Have An Account?{" "}
+            <Link
+              to="/login"
+              className="text-green-500 font-medium hover:underline"
             >
-              Accept{" "}
-              <span className="font-medium text-gray-800">
-                Terms & Conditions
-              </span>
-            </label>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-gray-800 text-white py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-          >
-            Register
-          </button>
-        </form>
-        <div className="mt-4 flex justify-center items-center space-x-4">
-          <span className="text-gray-600">SignUp with</span>
-          <button
-            type="button"
-            onClick={handleGoogleLogin}
-            className="btn rounded-lg flex items-center space-x-2 px-4 py-2 border border-gray-300 shadow-sm hover:bg-gray-100"
-            aria-label="Sign in with Google"
-          >
-            <FcGoogle className="w-6 h-6" />
-            <span className="text-gray-700 font-medium">Google</span>
-          </button>
+              Login
+            </Link>
+          </p>
         </div>
 
-        <p className="mt-4 text-sm text-center text-gray-500">
-          Have An Account?{" "}
-          <Link
-            to="/login"
-            className="text-green-500 font-medium hover:underline"
-          >
-            login
-          </Link>
-        </p>
+      
+        <div className="hidden md:block w-1/2">
+          <img
+            src="https://img.freepik.com/free-vector/professional-career-elements-design_1200-212.jpg" // Replace with your image URL
+            alt="Registration Illustration"
+            className="h-full w-full object-cover"
+          />
+        </div>
       </div>
     </div>
   );
