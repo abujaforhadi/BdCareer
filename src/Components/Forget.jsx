@@ -24,7 +24,7 @@ const Forget = () => {
 
   return (
     <div className="py-5">
-      <div className="p-4 rounded-lg w-1/3 mx-auto">
+      <div className="p-4 rounded-lg w-2/3 md:w-1/3 mx-auto">
         <h2 className="hidden md:block text-2xl font-bold text-gray-800 text-center mb-6">
           Reset Password
         </h2>
