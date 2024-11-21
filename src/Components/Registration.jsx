@@ -173,7 +173,7 @@ const Registration = () => {
           </form>
 
           <div className="mt-4 flex justify-center items-center space-x-4">
-            <span className="text-gray-600">SignUp with</span>
+            <span className="text-gray-600">Signin with</span>
             <button
               type="button"
               onClick={handleGoogleLogin}

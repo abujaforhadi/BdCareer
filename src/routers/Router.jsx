@@ -10,6 +10,7 @@ import Error from "../Components/Error";
 import Contact from "../Components/Contact";
 import Services from "../pages/Services";
 import Jobs from "../pages/Jobs";
+import Forget from "../Components/Forget";
 
 export const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/forget",
+        element: <Forget />,
       },
       {
         path: "/registration",

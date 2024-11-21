@@ -7,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const { login, resetPassword, loginWithGoogle } = useContext(AuthContext);
+  const { login,  loginWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
@@ -17,14 +17,7 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleResetPassword = () => {
-    const email = document.querySelector('input[name="email"]').value;
-    if (!email) {
-      toast.error("Please enter your email address");
-      return;
-    }
-    resetPassword(email);
-  };
+  
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -137,13 +130,13 @@ const Login = () => {
 
                 {/* Forgot Password */}
                 <div className="mb-4 text-center">
-                  <button
+                  <Link to="/forget"
                     type="button"
-                    onClick={handleResetPassword}
+                    
                     className="text-sm font-medium text-indigo-500 hover:underline focus:outline-none"
                   >
                     Forgot password?
-                  </button>
+                  </Link>
                 </div>
 
                 {/* Submit Button */}
