@@ -5,7 +5,7 @@ A robust career counseling website designed to provide personalized career guida
 ---
 
 ## 🚀 **Live Site**  
-[Visit BD Career](https://careerbd-1301d.web.app/)
+[Visit BD Career](https://careerbd-1301d.web.app/) or https://career.abujafor.me/
 
 ---
 
