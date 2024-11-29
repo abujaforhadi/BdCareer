@@ -7,9 +7,6 @@ A robust career counseling website designed to provide personalized career guida
 ## 🚀 **Live Site**  
 [Visit BD Career](https://careerbd-1301d.web.app/)
 
-## 📂 **GitHub Repository**  
-[GitHub Repository](https://github.com/programming-hero-web-course1/b10-a9-authentication-abujaforhadi)
-
 ---
 
 ## 🌟 **Features**
@@ -49,4 +46,4 @@ A robust career counseling website designed to provide personalized career guida
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/programming-hero-web-course1/b10-a9-authentication-abujaforhadi.git
+   git clone https://github.com/abujaforhadi/BdCareer.git
